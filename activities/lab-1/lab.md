@@ -80,7 +80,7 @@ In every step, replace `<user>` with your IAM user name, for example `<section>-
 
 ## Part D. Attach the policy and launch (10 minutes)
 
-1. Open the user link from Part A. Choose the Permissions tab, then Add permissions, then Attach policies directly.
+1. Open the IAM service. In the left navigation pane, choose **Users**, then click your own user name (e.g., `dcsad-g01`). Choose the Permissions tab, then Add permissions, then Attach policies directly.
 2. In the search box, type `<user>-launch`. Tick the box next to your policy. Click Next, then Add permissions.
 3. Wait 15 seconds. Refresh the page. The policy `<user>-launch` now appears under Permissions policies.
 4. Open EC2, then Security Groups, then Create security group. Name: `<user>-web`. Description: `Lab 1`. VPC: the default VPC. Inbound rules: Add rule, Type HTTP, Source Anywhere-IPv4. Do not add a tag yet. Click Create security group. Copy the error text into your `submission.md`.
