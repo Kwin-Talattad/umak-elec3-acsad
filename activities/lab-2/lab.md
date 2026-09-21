@@ -3,13 +3,13 @@ week: 8
 graded: true
 counts_toward: Midterm Class Standing — Lab Activities (30%)
 duration: 45 minutes
-mode: Team, one IAM user per team. Evidence goes to the private class form or TBL Hub, not to this repository.
+mode: Team, one IAM user per team. Submission goes to a Pull Request in this repository, and the PR link + peer evaluation goes to the Google Form.
 coverage: EC2 launch templates, security groups, Auto Scaling, CloudWatch
 ---
 
 # Lab 2: Build an EC2 Auto Scaling Group
 
-> This lab does not use a Pull Request. Do not post screenshots or evidence in this repository. Screenshots show the account ID. Submit your evidence to the private class form or TBL Hub.
+> **Submission format:** This lab requires a Pull Request (PR) containing your `contribution.md` and `submission.md`. Once your PR is open, submit its link to the Google Form for peer evaluation: https://forms.gle/gNKDjFUTHgRwDTxm7. Do not merge your own PR.
 
 **Goal:** Build a group of servers that adds a server when load rises, and watch it happen.
 
@@ -17,7 +17,6 @@ coverage: EC2 launch templates, security groups, Auto Scaling, CloudWatch
 
 **Duration:** 45 minutes. Answer the questions only after Step 7.
 
-**Taught in the lecture:** launch templates, security groups, Auto Scaling groups and target tracking, the group page tabs, and how to read a scale-out.
 
 ## How the lab works
 
@@ -82,7 +81,7 @@ If creation fails, copy the full error text. Read the action and the resource in
 2. Wait until one instance shows Lifecycle InService.
 3. Click the instance ID. Copy the Public IPv4 address.
 4. Open `http://<public-ip>` in a new browser tab. Use http, not https.
-5. Write down the instance ID and the Availability Zone shown on the page.
+5. Write down the instance ID and the Availability Zone shown on the page in your `submission.md`.
 
 **5. Trigger the load (10 minutes).**
 
@@ -90,8 +89,10 @@ If creation fails, copy the full error text. Read the action and the resource in
 2. On the group page, open the Monitoring tab, then EC2. Watch Average CPU utilization. It rises in one to three minutes.
 3. Open the Activity tab. Wait for a line that says a new instance is launching. Expect this in three to six minutes.
 4. On the Instance management tab, wait until two instances are InService.
-5. Open the second instance's public IP in a new tab. Write down its instance ID and Availability Zone.
+5. Open the second instance's public IP in a new tab. Write down its instance ID and Availability Zone in your `submission.md`.
 6. Open `http://<first-public-ip>/stop` to end the load on the first instance.
+7. Open the Monitoring tab of the group and look at the CPU chart.
+8. Open the Activity tab of the group.
 
 The group will not shrink during class. Scale-in waits about fifteen minutes of low CPU. The automatic cutoff ends the group before then if you do nothing.
 
@@ -116,29 +117,12 @@ Answer after Step 7.
 4. What did the automatic cutoff protect us from?
 5. What changes when a load balancer sits in front of the group?
 
-Submit to the private form or TBL Hub:
+## Final PR Checklist
 
-1. Screenshot of the Activity tab that shows the scale-out.
-2. Screenshot of the Monitoring tab CPU chart.
-3. Two screenshots of the page, one from each instance, that show different instance IDs.
-4. Screenshot of the launch template summary.
-5. Screenshot of the group's Details tab with desired 1, minimum 1, maximum 2.
-6. Your answers to the five questions.
+Your Pull Request must contain:
+1. `contribution.md`: A markdown table showing who played which role (Driver, Navigator, Recorder, Reviewer) in each part of the lab. You can copy `contribution-template.md` to start.
+2. `submission.md`: The file containing your recorded instance IDs and your answers to the 5 questions. You can copy `submission-template.md` to start.
 
-Every screenshot needs one sentence that says what it proves.
+*Tip: Check out `submission-example.md` in this folder to see what a finished submission should look like.*
 
 **Expected output:** A group that grows from 1 to 2 instances within about 6 minutes of `/burn`. Two different instance IDs. One replacement instance after you terminate one by hand.
-
-**Limitation and next step:** With no load balancer, users must know each address. This lab does not show scale-in, and it does not use an ELB health check. Week 10 adds a shared load balancer and target group.
-
-**No-account alternative:** Use the paper timeline. The handout shows a CPU line over 20 minutes and a policy with target 40 and maximum 2. Mark on the timeline when the group adds an instance, and explain why it stops adding at 2.
-
-## Take-home window (fallback only)
-
-Use this only if a section runs out of class time.
-
-- Window: from the end of class until the announced end time (the instructor posts a date and time in Manila time). After the time, launch and scaling actions are denied and the account ends what runs.
-- Do the lab in one sitting of about 45 minutes. The automatic cutoff ends any instance 90 minutes after it launches.
-- If the console denies an action with a message about time, the window closed. Do not retry. Submit what you have with a note.
-- If you finish early, delete the Auto Scaling group, the launch template, and the security group.
-- Support: post the exact error text in the section channel. Do not post screenshots that show your password or the account ID.

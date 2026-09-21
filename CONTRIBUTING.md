@@ -3,8 +3,6 @@
 This repo is shared by everyone in the section. Follow the rules below so that
 submissions don't collide with each other. They apply to every activity in this
 repo — seatworks, labs, and assignments.
-The one exception is Week 8's Lab 1 and Lab 2. You do them in the AWS console and send your
-evidence to the private class form or TBL Hub. Do not open a Pull Request for them.
 
 ## Workflow: fork → branch → PR
 
@@ -36,8 +34,8 @@ submissions/<activity-id>/<your-identifier>/
   brief for which applies, and spell it identically every time. A group name is
   optional and, where used, goes inside your submission (e.g., in your incident report), not in
   the folder name.
-Do not create files anywhere else in `submissions/`, and do not modify
-`activities/`, `templates/`, or `.github/`.
+  Do not create files anywhere else in `submissions/`, and do not modify
+  `activities/`, `templates/`, or `.github/`.
 
 ## How your submission gets checked
 
@@ -47,7 +45,9 @@ run it the same way CI will:
 ```bash
 bash activities/<activity-id>/check.sh submissions/<activity-id>/<your-identifier>
 ```
+
 Example:
+
 ```bash
 bash activities/seatwork-1/check.sh submissions/seatwork-1/jdelacruz
 ```

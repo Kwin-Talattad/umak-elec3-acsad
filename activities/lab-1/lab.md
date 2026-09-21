@@ -3,18 +3,18 @@ week: 8
 graded: true
 counts_toward: Midterm Class Standing — Lab Activities (30%)
 duration: 45 minutes
-mode: Team, one IAM user per team. Evidence goes to the private class form or TBL Hub, not to this repository.
+mode: Team, one IAM user per team. Submission goes to a Pull Request in this repository, and the PR link + peer evaluation goes to the Google Form.
 coverage: IAM users, writing and attaching a policy, permissions boundary, least privilege, CloudTrail
 ---
 
 # Lab 1: Write and Attach an IAM Policy
 
-> This lab does not use a Pull Request. Do not post screenshots or evidence in this repository. Screenshots show the account ID. Submit your evidence to the private class form or TBL Hub.
+> **Submission format:** This lab requires a Pull Request (PR) containing your `contribution.md` and `submission.md`. Once your PR is open, submit its link to the Google Form for peer evaluation: https://forms.gle/gNKDjFUTHgRwDTxm7. Do not merge your own PR.
 
 ## Team rules
 
 - Teams have 3 or 4 people and sit in one pod. One IAM user belongs to the whole team. Every member can sign in on their own PC. Only the Driver clicks Create and Launch, so two people never change the same resource at once.
-- Roles rotate at each lab part (Lab 1 Parts A to B, C, D to E, then Lab 2 steps 1 to 2, 3 to 4, 5 to 7): Driver (types), Navigator (reads the error aloud), Recorder (writes the team notes), Reviewer (checks each step against the lab).
+- Roles rotate at each lab part (Lab 1 Parts A to B, C, D to E, then Lab 2 steps 1 to 2, 3 to 4, 5 to 7): Driver (types), Navigator (reads the error aloud), Recorder (fills the worksheet), Reviewer (checks each step against the lab).
 - The password emailed to you belongs to your team. Do not paste it into any chat, form, or repository. It stops working when the lab access window ends.
 - Never create anything outside the Singapore Region (Asia Pacific, ap-southeast-1). The account blocks it.
 - Every resource you create carries the tag `team` with your IAM user name as the value. Some steps fail without it. That is on purpose.
@@ -38,24 +38,33 @@ coverage: IAM users, writing and attaching a policy, permissions boundary, least
 
 **Duration:** 45 minutes. Answer the questions only after Part E.
 
-**Taught in the lecture:** the console layout, Regions, the EC2 launch page, IAM users, groups, and policies, the permissions boundary, how AWS decides, reading a denial, and CloudTrail Event history.
 
-In every step, replace `<user>` with your IAM user name, for example `acsad-g03`.
+In every step, replace `<user>` with your IAM user name, for example `<section>-g03`.
 
 ## Part A. Sign in and find your account ID (5 minutes)
 
-1. Open the sign-in URL from your email. Enter the account ID or alias, your IAM user name, and the password. Set a new password if the page asks.
+1. Open the sign-in URL: `https://umak-elec3-cloud.signin.aws.amazon.com/console`. Enter your IAM user name and the password. Set a new password if the page asks.
 2. In the top bar, open the Region menu and choose Asia Pacific (Singapore) `ap-southeast-1`.
 3. In the top bar, click your user name. Copy the 12-digit Account ID from the menu.
-4. Open the section group link on the board (for example `acsad-class`). The User groups list page is blocked for your user, so use the link. Open the Permissions tab. Open the policy `umak-lab-t0-observe` and choose the JSON tab. Notice that no statement allows `ec2:RunInstances`.
-5. Open the user link on the board. Under Permissions boundary, open `umak-lab-boundary`. Find the statement `DenyAnyInstanceTypeButT3Micro`.
+4. Open the IAM service. In the left navigation pane, choose **Policies**. Click the **Filter** box, select **Customer managed**. Click on the policy named `umak-lab-t0-observe`. Open the JSON tab. Notice that no statement allows `ec2:RunInstances`.
+
+    ![umak-lab-t0-observe policy](../../assets/lab1-observe-policy.png)
+5. Go back to the **Policies** list (still filtered to Customer managed). Click on `umak-lab-boundary`. Find the statement `DenyAnyInstanceTypeButT3Micro`.
+
+    ![umak-lab-boundary policy](../../assets/lab1-boundary-policy.png)
 
 ## Part B. Try to launch, and read the denial (5 minutes)
 
 1. Open EC2, then Instances, then Launch instances.
-2. Name: `<user>-test`. Application and OS Image: Amazon Linux 2023. Instance type: `t3.micro`. Key pair: Proceed without a key pair. Leave the other settings.
+2. Name: `<user>-test`. Application and OS Image: Amazon Linux 2023. Instance type: `t3.micro`. Key pair: Proceed without a key pair. **Under Network settings, choose Select existing security group and pick the default one** (this prevents a security group error from hiding the instance error we want to study).
+
+    ![Launch settings](../../assets/lab1-launch-settings.png)
+
+    ![Key pair](../../assets/lab1-keypair.png)
 3. Click Launch instance. The console shows an error.
-4. Copy the full error text into your team notes. Underline the action name after "not authorized to perform".
+
+    ![Launch error](../../assets/lab1-launch-error.png)
+4. Copy the full error text into your `submission.md`. Underline or bold the action name after "not authorized to perform".
 
 ## Part C. Write your policy (12 minutes)
 
@@ -74,10 +83,10 @@ In every step, replace `<user>` with your IAM user name, for example `acsad-g03`
 1. Open the user link from Part A. Choose the Permissions tab, then Add permissions, then Attach policies directly.
 2. In the search box, type `<user>-launch`. Tick the box next to your policy. Click Next, then Add permissions.
 3. Wait 15 seconds. Refresh the page. The policy `<user>-launch` now appears under Permissions policies.
-4. Open EC2, then Security Groups, then Create security group. Name: `<user>-web`. Description: `Lab 1`. VPC: the default VPC. Inbound rules: Add rule, Type HTTP, Source Anywhere-IPv4. Do not add a tag yet. Click Create security group. Copy the error text into your team notes.
+4. Open EC2, then Security Groups, then Create security group. Name: `<user>-web`. Description: `Lab 1`. VPC: the default VPC. Inbound rules: Add rule, Type HTTP, Source Anywhere-IPv4. Do not add a tag yet. Click Create security group. Copy the error text into your `submission.md`.
 5. Repeat step 4. This time, under Tags, click Add new tag. Key: `team`. Value: `<user>`. Click Create security group. It succeeds.
 6. Open EC2, then Instances, then Launch instances. Use the settings from Part B. Under Network settings, choose Select existing security group and pick `<user>-web`. Under Advanced or Resource tags, add tag Key `team`, Value `<user>`, Resource types Instances. Click Launch instance. Do not skip the tag. An instance without the `team` tag launches, but your user cannot terminate it, even with `ec2:*` attached. Only the 90-minute cutoff ends it.
-7. Open the instance list. Wait until Instance state is Running. Write the time in your team notes. The 90-minute cutoff clock starts now.
+7. Open the instance list. Wait until Instance state is Running. Write the time in your `submission.md`. The 90-minute cutoff clock starts now.
 
 If step 6 fails, copy the error text. Read the action and the resource in it. Find the statement in your policy that allows it, and fix the policy. To edit: IAM, Policies, `<user>-launch`, Edit, JSON tab. Save changes, wait 15 seconds, and retry.
 
@@ -95,14 +104,14 @@ If step 6 fails, copy the error text. Read the action and the resource in it. Fi
 
    Name it `<user>-too-wide`. Create it. Attach it to your user as in Part D steps 1 to 3.
 3. Wait 15 seconds. Try the `t3.small` launch again. It is still denied.
-4. Switch the Region to Asia Pacific (Tokyo). Try to launch any instance. Copy the error. Switch back to Singapore.
+4. Switch the Region to Asia Pacific (Tokyo). Try to launch any instance. Copy the error into `submission.md`. Switch back to Singapore.
 5. Open your user, then the Permissions tab. Select `<user>-too-wide`, click Remove, and confirm. Then open IAM, Policies, select `<user>-too-wide`, and choose Delete.
 6. Open EC2, Instances. Select the instance from Part D. Choose Instance state, then Terminate (delete) instance. This works because the instance carries your `team` tag.
 7. Open CloudTrail, then Event history. Set Lookup attributes to User name and enter `<user>`. Open one `RunInstances` event whose Error code is `Client.UnauthorizedOperation`. Events with `Client.DryRunOperation` are the console's own permission check, so skip them. Find the field `errorMessage`. New events can take several minutes to appear. If the list is empty, do Part F first and come back.
 
 ## Part F. Questions and evidence (5 minutes)
 
-Answer in your team notes.
+Answer in your `submission.md`.
 
 1. Which action did the Part B error name?
 2. In your policy, which condition limits `ec2:RunInstances`?
@@ -110,32 +119,12 @@ Answer in your team notes.
 4. Why is `ec2:*` on `*` a poor policy even with a boundary?
 5. In two sentences: what does the boundary control that your policy cannot?
 
-Submit to the private form or TBL Hub:
+## Final PR Checklist
 
-1. Screenshot of the Part B error with your user name visible.
-2. Screenshot of your user's Permissions tab that lists `<user>-launch`.
-3. Screenshot of the instance in the Running state.
-4. Screenshot of the `t3.small` or Tokyo denial.
-5. Screenshot of the CloudTrail event with `errorMessage`.
-6. The three filled blanks and your answers to the five questions.
+Your Pull Request must contain:
+1. `contribution.md`: A markdown table showing who played which role (Driver, Navigator, Recorder, Reviewer) in each part of the lab. You can copy `contribution-template.md` to start.
+2. `submission.md`: The file containing your error logs, the 3 filled blanks from Part C, and your answers to the 5 questions. You can copy `submission-template.md` to start.
 
-Every screenshot needs one sentence that says what it proves. Screenshots show the account ID. Never post them publicly.
+*Tip: Check out `submission-example.md` in this folder to see what a finished submission should look like.*
 
 **Expected output:** One denied launch before your policy. One created and attached policy. One Running t3.micro. Two boundary denials that stay denied after `ec2:*` is attached. One CloudTrail event.
-
-**Limitation and next step:** This lab writes an identity policy for a user. Week 12 gives an instance an IAM role instead of keys.
-
-**No-account alternative:** Use the paper set below, `Lab 1 paper set`.
-
-### Lab 1 paper set (no AWS account)
-
-Write the four blanks in the starter policy. Then evaluate each request against the starter policy and the boundary. Write Allow or Deny and name the deciding statement.
-
-| Request | Decision | Deciding statement |
-| --- | --- | --- |
-| Launch a t3.micro in Singapore | | |
-| Launch an m5.large in Singapore | | |
-| Launch a t3.micro in Tokyo | | |
-| Create a security group without the `team` tag | | |
-| Terminate an instance tagged `team=acsad-g02` while signed in as `acsad-g03` | | |
-| Create an IAM user | | |
