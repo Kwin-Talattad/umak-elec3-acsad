@@ -39,9 +39,13 @@ currently-active ones are:
 |---|---|
 | [`activities/seatwork-1/`](activities/seatwork-1/) | Seatwork 1 — Linux CLI Fundamentals |
 | [`activities/assignment-1/`](activities/assignment-1/) | Assignment 1 — Course Materials Portal: Diagnose, Fix, and Look Ahead |
+| [`activities/lab-1/`](activities/lab-1/) | Lab 1: Write and Attach an IAM Policy |
+| [`activities/lab-2/`](activities/lab-2/) | Lab 2: Build an EC2 Auto Scaling Group |
 | [`templates/`](templates/) | Shared templates (evidence write-ups, etc.) |
 | [`submissions/`](submissions/) | Where your work goes — one folder per person/group, per activity |
 | [`.github/`](.github/) | PR template and the CI workflow that checks submissions |
+
+Lab 1 and Lab 2 (Week 8) are the exception: you do them in the AWS console and send your evidence to the private class form or TBL Hub, not by Pull Request.
 
 Every activity works the same way: read its brief under `activities/<id>/`, submit
 under `submissions/<id>/<your-identifier>/`, and — if the activity has an automated

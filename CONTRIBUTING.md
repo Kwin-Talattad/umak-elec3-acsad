@@ -3,6 +3,8 @@
 This repo is shared by everyone in the section. Follow the rules below so that
 submissions don't collide with each other. They apply to every activity in this
 repo — seatworks, labs, and assignments.
+The one exception is Week 8's Lab 1 and Lab 2. You do them in the AWS console and send your
+evidence to the private class form or TBL Hub. Do not open a Pull Request for them.
 
 ## Workflow: fork → branch → PR
 
@@ -10,7 +12,7 @@ repo — seatworks, labs, and assignments.
 2. Clone your fork and create a branch for your submission:
    ```bash
    git checkout -b <activity-id>-<your-name-or-group>
-   # e.g. seatwork-1-jdelacruz, or lab-1-team-alpha
+   # e.g. seatwork-1-jdelacruz, or assignment-1-jdelacruz
    ```
 3. Work only inside your own folder (see below). A PR that touches any other file —
    someone else's submission, an activity brief, the CI workflow — will be closed
@@ -57,13 +59,13 @@ If an activity has no `check.sh`, it's graded manually.
 
 ```
 seatwork-1: submit seatwork.sh
-lab-1: submit case for group-3, brief 01-weather-relay-outage
+assignment-1: submit answers.md
 ```
 
 ## Academic integrity
 
 For activities where the checker generates data specific to your name or group
-(Lab Activity 1, for example), the scripts are public but your specific answer
+(if an activity does this), the scripts are public but your specific answer
 isn't until you run them yourself with your own identifier. Copying someone else's
 submission won't pass under your identifier. See your course's AI-use and
 academic-integrity policy for what counts as acceptable assistance.
