@@ -1,6 +1,6 @@
-# ELEC3 Cloud Computing — {{SECTION}}
+# ELEC3 Cloud Computing — IV-ACSAD
 
-This is the public submission repository for **{{SECTION}}**, UMak CCIS ELEC3 (Cloud
+This is the public submission repository for **IV-ACSAD**, UMak CCIS ELEC3 (Cloud
 Computing). Seatworks, lab activities, and assignments are posted here as they're
 assigned, and you submit your work as a Pull Request.
 

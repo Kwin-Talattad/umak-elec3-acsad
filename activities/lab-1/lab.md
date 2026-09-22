@@ -39,7 +39,7 @@ coverage: IAM users, writing and attaching a policy, permissions boundary, least
 **Duration:** 45 minutes. Answer the questions only after Part E.
 
 
-In every step, replace `<user>` with your IAM user name, for example `<section>-g03`.
+In every step, replace `<user>` with your IAM user name, for example `acsad-g03`.
 
 ## Part A. Sign in and find your account ID (5 minutes)
 
@@ -80,7 +80,7 @@ In every step, replace `<user>` with your IAM user name, for example `<section>-
 
 ## Part D. Attach the policy and launch (10 minutes)
 
-1. Open the IAM service. In the left navigation pane, choose **Users**, then click your own user name (e.g., `dcsad-g01`). Choose the Permissions tab, then Add permissions, then Attach policies directly.
+1. Open the IAM service. In the left navigation pane, choose **Users**, then click your own user name (e.g., `acsad-g01`). Choose the Permissions tab, then Add permissions, then Attach policies directly.
 2. In the search box, type `<user>-launch`. Tick the box next to your policy. Click Next, then Add permissions.
 3. Wait 15 seconds. Refresh the page. The policy `<user>-launch` now appears under Permissions policies.
 4. Open EC2, then Security Groups, then Create security group. Name: `<user>-web`. Description: `Lab 1`. VPC: the default VPC. Inbound rules: Add rule, Type HTTP, Source Anywhere-IPv4. Do not add a tag yet. Click Create security group. Copy the error text into your `submission.md`.
@@ -104,7 +104,7 @@ If step 6 fails, copy the error text. Read the action and the resource in it. Fi
 
    Name it `<user>-too-wide`. Create it. Attach it to your user as in Part D steps 1 to 3.
 3. Wait 15 seconds. Try the `t3.small` launch again. It is still denied.
-4. Switch the Region to Asia Pacific (Tokyo). Try to launch any instance. Copy the error into `submission.md`. Switch back to Singapore.
+4. Switch the Region to Asia Pacific (Tokyo). Try to launch any instance. Because the permissions boundary denies actions outside Singapore, the console immediately displays red error markers for the AMI and VPC selectors; copy the text from these error markers into `submission.md`. Switch back to Singapore.
 5. Open your user, then the Permissions tab. Select `<user>-too-wide`, click Remove, and confirm. Then open IAM, Policies, select `<user>-too-wide`, and choose Delete.
 6. Open EC2, Instances. Select the instance from Part D. Choose Instance state, then Terminate (delete) instance. This works because the instance carries your `team` tag.
 7. Open CloudTrail, then Event history. Set Lookup attributes to User name and enter `<user>`. Open one `RunInstances` event whose Error code is `Client.UnauthorizedOperation`. Events with `Client.DryRunOperation` are the console's own permission check, so skip them. Find the field `errorMessage`. New events can take several minutes to appear. If the list is empty, do Part F first and come back.
