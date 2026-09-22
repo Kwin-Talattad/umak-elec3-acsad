@@ -6,6 +6,9 @@
 **Error Action Name:** 
 Instance launch failed. You are not authorized to perform this operation... is not authorized to perform: **ec2:FakeActionName** on resource...
 
+**Screenshot:**
+![Part B Error](example-part-b-error.png)
+
 ## Part C
 **Policy Statement Blanks:**
 - `"Action"`: "ec2:FakeActionName"
@@ -18,9 +21,21 @@ User demo-user is not authorized to perform: ec2:CreateSecurityGroup on resource
 
 **Running Instance Time:** 14:05 UTC
 
+**Screenshot 1 (Permissions Tab):**
+![Permissions Tab](example-part-d-policy.png)
+
+**Screenshot 2 (Running Instance):**
+![Running Instance](example-part-d-instance.png)
+
 ## Part E
 **t3.small / Tokyo Denial Error:** 
 Instance launch failed... with an explicit deny in a permissions boundary.
+
+**Screenshot 1 (Boundary Denial):**
+![Boundary Denial](example-part-e-denial.png)
+
+**Screenshot 2 (CloudTrail Event):**
+![CloudTrail Event](example-part-e-cloudtrail.png)
 
 ## Part F Questions
 1. Which action did the Part B error name?

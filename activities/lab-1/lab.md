@@ -119,11 +119,20 @@ Answer in your `submission.md`.
 4. Why is `ec2:*` on `*` a poor policy even with a boundary?
 5. In two sentences: what does the boundary control that your policy cannot?
 
+### Required Screenshots
+Embed these in your `submission.md` (and save the image files in your submission directory):
+1. Screenshot of the Part B launch error with your user name visible.
+2. Screenshot of your user's Permissions tab listing `<user>-launch`.
+3. Screenshot of the instance in the Running state.
+4. Screenshot of the `t3.small` or Tokyo denial (red error markers or denial dialog).
+5. Screenshot of the CloudTrail event with `errorMessage`.
+
 ## Final PR Checklist
 
 Your Pull Request must contain:
 1. `contribution.md`: A markdown table showing who played which role (Driver, Navigator, Recorder, Reviewer) in each part of the lab. You can copy `contribution-template.md` to start.
-2. `submission.md`: The file containing your error logs, the 3 filled blanks from Part C, and your answers to the 5 questions. You can copy `submission-template.md` to start.
+2. `submission.md`: The file containing your error logs, embedded screenshots, the 3 filled blanks from Part C, and your answers to the 5 questions. You can copy `submission-template.md` to start.
+3. Your screenshot image files stored in your submission directory alongside `submission.md`.
 
 *Tip: Check out `submission-example.md` in this folder to see what a finished submission should look like.*
 

@@ -3,6 +3,9 @@
 ## Part B
 **Error Action Name:** <paste error text and bold the action>
 
+**Screenshot (Part B launch denial with username visible):**
+![Part B Error](part-b-error.png)
+
 ## Part C
 **Policy Statement Blanks:**
 - `"Action"`: <answer>
@@ -14,8 +17,20 @@
 
 **Running Instance Time:** <write time here>
 
+**Screenshot 1 (Permissions tab listing <user>-launch):**
+![Permissions Tab](part-d-policy.png)
+
+**Screenshot 2 (Instance in Running state):**
+![Running Instance](part-d-instance.png)
+
 ## Part E
 **t3.small / Tokyo Denial Error:** <paste error text>
+
+**Screenshot 1 (t3.small or Tokyo denial):**
+![Boundary Denial](part-e-denial.png)
+
+**Screenshot 2 (CloudTrail event showing errorMessage):**
+![CloudTrail Event](part-e-cloudtrail.png)
 
 ## Part F Questions
 1. Which action did the Part B error name?
