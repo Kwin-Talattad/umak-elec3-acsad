@@ -42,6 +42,7 @@ currently-active ones are:
 | [`activities/assignment-1/`](activities/assignment-1/) | Assignment 1 — Course Materials Portal: Diagnose, Fix, and Look Ahead |
 | [`activities/lab-1/`](activities/lab-1/) | Lab 1: Write and Attach an IAM Policy |
 | [`activities/lab-2/`](activities/lab-2/) | Lab 2: Build an EC2 Auto Scaling Group |
+| [`activities/assignment-2/`](activities/assignment-2/) | Assignment 2: Explore a VPC |
 | [`templates/`](templates/)                         | Shared templates (evidence write-ups, etc.)                      |
 | [`submissions/`](submissions/)                     | Where your work goes — one folder per person/group, per activity |
 | [`.github/`](.github/)                             | PR template and the CI workflow that checks submissions          |
